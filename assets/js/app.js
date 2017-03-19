@@ -18,10 +18,10 @@ $("#add-train-btn").on("click", function(event) {
   event.preventDefault();
 
   //grabs input from html
-  var trainName =$("#train-name-input").val().trim();
-  var trainDest =$("#destination-input").val().trim();
-  var trainFreq =$("#frequency-input").val().trim();
-  var trainArrival =$("#first-train-input").val().trim();
+  var trainName = $("#train-name-input").val().trim();
+  var trainDest = $("#destination-input").val().trim();
+  var trainFreq = moment($("#frequency-input").val().trim(), "k kk").format("X");
+  var trainArrival = moment($("#first-train-input").val().trim(), "k kk").format("X");
   //console.log form inputs
   console.log(trainName);
   console.log(trainDest);
@@ -61,11 +61,16 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   console.log(trainFreq);
   console.log(trainArrival);
 
-  //using momment for train arrival
-
   //calculating difference between arrivals
+  var minutesTil = moment()
+  //calculating minutes away
+//  could not get this to work!!!!!!
+  //calculating next arrival
+  //var nextArrival = moment(trainArrival).add(moment.unix(trainFreq, "X"), "minutes");
+  //var nextArrival = trainArrival.add(trainFreq, "minutes");
+  //console.log("next: " + nextArrival)
 
   //adding the data to the table
 
-  $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDest + "</td><td>" + trainFreq + "</td><td>" + trainArrival + "</td></tr>")
+  $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + trainDest + "</td><td>" + trainFreq + "</td><td>" +  + "</td></tr>")
 });
